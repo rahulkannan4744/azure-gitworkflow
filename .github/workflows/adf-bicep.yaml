@@ -24,6 +24,6 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./main.bicepadf-bicep/adf-template.bicep
+        template: adf-bicep/adf-template.bicep
         parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
         failOnStdErr: false
