@@ -32,6 +32,6 @@ jobs:
             creds: ${{ secrets.AZURE_CREDENTIAL }}
 
       - name: 'deploy storage account bicep'
-        working-directory: '${{github.workspace}}/actions/bicep'
+        working-directory: '${{github.workspace}}/azure-gitworkflow'
         run: |
-          az deployment group create  --resource-group my-test-dev --template-file './strorage.bicep' --parameters @parameters.json
+          az deployment group create  --resource-group my-test-dev --template-file ./storage_account.bicep
