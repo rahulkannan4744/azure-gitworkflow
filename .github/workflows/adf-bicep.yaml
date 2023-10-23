@@ -1,0 +1,28 @@
+name: Deploy ADF Bicep Template
+
+on:
+  workflow_dispatch:
+    
+
+jobs:
+  deploy_adf:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy ADF Bicep Template
+      run: |
+        az deployment sub create --.github/workflows/adf-bicep.yaml\
+          --template-file adf-bicep/adf-template.bicep \
+          --parameters @adf-bicep/adf-parameter.json
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+  # Add additional steps as needed
